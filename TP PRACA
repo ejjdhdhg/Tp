@@ -1,0 +1,20 @@
+-- Coloque este LocalScript em StarterPlayerScripts ou StarterGui
+local player = game.Players.LocalPlayer
+local targetCFrame = CFrame.new(287.32, 4.80, 354.62) -- Edite X, Y, Z aqui!
+
+local function teleportar()
+    if player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
+        player.Character.HumanoidRootPart.CFrame = targetCFrame
+    end
+end
+
+-- Teleporta assim que o personagem carregar
+player.CharacterAdded:Connect(function()
+    task.wait(0.5) -- Pequena espera para garantir o carregamento
+    teleportar()
+end)
+
+-- Teleporta imediatamente se já estiver no jogo
+if player.Character then
+    teleportar()
+end
